@@ -144,6 +144,15 @@ win32-msvc2015 {
     QMAKE_LFLAGS += /NODEFAULTLIB:LIBCMT
     INCLUDEPATH += "$$(BONJOUR_SDK_HOME)/Include/"
 }
+win32-msvc* {
+    contains(QMAKE_HOST.arch, x86):{
+        QMAKE_LFLAGS *= /MACHINE:X86
+    }
+
+    contains(QMAKE_HOST.arch, x86_64):{
+        QMAKE_LFLAGS *= /MACHINE:X64
+    }
+}
 win32 { 
     Debug:DESTDIR = ../../bin/Debug
     Release:DESTDIR = ../../bin/Release
